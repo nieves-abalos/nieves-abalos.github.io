@@ -1,94 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>Nieves Abalos - Talk to me</title>
-		<meta name="description" content="Nieves Abalos' personal webpage" />
-		<meta name="keywords" content="nieves, abalos, personal, page, interests, linkedin, research, twitter, medium, linares, granada, BEEVA" />
-		<meta name="author" content="Nieves Abalos" />
-		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="fonts/vicons/vicons-font.css" />
-		<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<link rel="stylesheet" type="text/css" href="css/chat.css" />
-		<!--[if IE]>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Nieves Abalos - Talk to me</title>
+    <meta name="description" content="Nieves Abalos - Conversational Interfaces Engineer" />
+    <meta name="keywords" content="nieves, abalos, personal, page, interests, linkedin, research, twitter, medium, linares, granada, BEEVA, chatbots, conversational interfaces, voice first" />
+    <meta name="author" content="Nieves Abalos" />
+    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="fonts/vicons/vicons-font.css" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/chat.css" />
+    <!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<!-- Creative Gooey Effects by http://twitter.com/lucasbebber Lucas Bebber -->
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		  ga('create', 'UA-87254589-1', 'auto');
-		  ga('send', 'pageview');
-		</script>
-	</head>
-	<body>
-		<header class="header">
-			<div class="nas-title"><h1><a href="http://nieves.abalos.me">Nieves Ábalos</a></h1></div>
-			<h2>About Me</h2>
-			<nav class="menu-nas">
-				<a href="index.html">Interests</a>
-				<a class="current-item" href="chat.html">Chat</a>
-				<a href="cv.pdf">CV (PDF)</a>
-			</nav>
-		</header>
-		<div class="container">
-			<div class="content">
-				<div class="chat-window">
-					<div class="chat-messages">
-						<ol class="chat-messages-list">
-							<li class="chat-message chat-message-friend">
-								<div class="chat-message-bubble">
-									Hey! :)
-								</div>
-							</li>
-							<li class="chat-message chat-message-friend">
-								<div class="chat-message-bubble">
-									thanks for visiting my website
-								</div>
-							</li>
-							<li class="chat-message chat-message-friend">
-								<div class="chat-message-bubble">
-									<a href="http://nieves.abalos.me">nieves.abalos.me</a>
-								</div>
-							</li>
-							<li class="chat-message chat-message-friend">
-								<div class="chat-message-bubble">
-									this is Nieves-bot, my personal chatbot
-								</div>
-							</li>
-							<li class="chat-message chat-message-friend">
-								<div class="chat-message-bubble">
-									please type something on the field below and press enter
-								</div>
-							</li>
-						</ol>
-					</div>
-					<div class="chat-input-bar">
-						<div class="chat-info-container">
+    <!-- Creative Gooey Effects by http://twitter.com/lucasbebber Lucas Bebber -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-87254589-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
 
-						</div>
-						<div class="chat-effect-container">
-							<div class="chat-effect-bar"></div>
-						</div>
-						<div class="chat-input-wrapper">
-							<button class="chat-input-tool">
+<body>
+    <header class="header">
+        <div class="nas-title">
+            <h1><a href="http://nieves.abalos.me" onclick="ga('send', 'event', 'click', 'Title', 'title-click');">Nieves Ábalos</a></h1>
+        </div>
+        <h2>About Me</h2>
+        <nav class="menu-nas">
+            <a href="index.html" onclick="ga('send', 'event', 'click', 'Index', 'menu-click');">Interests</a>
+            <a class="current-item" href="chat.html" onclick="ga('send', 'event', 'click', 'Chat', 'menu-click');">Chat</a>
+            <a href="cv.pdf" onclick="ga('send', 'event', 'click', 'CV-PDF', 'menu-click');">CV (PDF)</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="chat-window">
+                <div class="chat-messages">
+                    <ol class="chat-messages-list">
+                        <li class="chat-message chat-message-friend">
+                            <div class="chat-message-bubble">
+                                Hey! :)
+                            </div>
+                        </li>
+                        <li class="chat-message chat-message-friend">
+                            <div class="chat-message-bubble">
+                                thanks for visiting my website
+                            </div>
+                        </li>
+                        <li class="chat-message chat-message-friend">
+                            <div class="chat-message-bubble">
+                                <a href="http://nieves.abalos.me">nieves.abalos.me</a>
+                            </div>
+                        </li>
+                        <li class="chat-message chat-message-friend">
+                            <div class="chat-message-bubble">
+                                this is Nieves-bot, my personal chatbot
+                            </div>
+                        </li>
+                        <li class="chat-message chat-message-friend">
+                            <div class="chat-message-bubble">
+                                please type something on the field below and press enter
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="chat-input-bar">
+                    <div class="chat-info-container">
+
+                    </div>
+                    <div class="chat-effect-container">
+                        <div class="chat-effect-bar"></div>
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <button class="chat-input-tool">
 								<i class="icon icon-write"></i>
 							</button>
-							<div class="chat-input" contenteditable></div>
-							<button class="chat-send">
+                        <div class="chat-input" contenteditable></div>
+                        <button class="chat-send">
 								<i class="fa fa-paper-plane"></i>
 							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
 			  <defs>
 			    <filter id="goo">
 			      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -97,12 +108,14 @@
 			    </filter>
 			  </defs>
 			</svg>
-		</div><!-- /container -->
-		<div class="info">(c) Nieves Abalos, 2016</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/TweenMax.min.js"></script>
-		<script src="js/chat.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
+    </div>
+    <!-- /container -->
+    <div class="info">(c) Nieves Abalos, 2016</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/TweenMax.min.js"></script>
+    <script src="js/chat.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-	</body>
+</body>
+
 </html>
