@@ -1,4 +1,5 @@
 var KEY_ENTER = 13;
+
 $(document).ready(function() {
     var $input = $(".chat-input"),
         $sendButton = $(".chat-send"),
@@ -13,14 +14,20 @@ $(document).ready(function() {
     var plantilla = "Mmm...";
     var replies = [
         { id: 0, state: "not-understood", text: ["I can't understand you, as a beta chatbot I'm still learning language :) ", "say 'help' and I'll tell you what I can do."] },
-        { id: 1, state: "hello", text: ["hello! nice to meet you :D What do you want to know about me?"] },
+        { id: 1, state: "hello", text: ["hello! nice to meet you :D"] },
         { id: 2, state: "bye", text: ["hope I helped you! I'm continuosly learning, come back to discover what I've learned.. See you soon!"] },
-        { id: 3, state: "help", text: ["what I can do? ask me about how to contact me or where to read more about my interests"] },
-        { id: 8, state: "read", text: ["read me at twitter or medium, which one do you prefer?"] },
+        { id: 3, state: "help", text: ["what I can do? ask me about how to contact Nieves or where to read more about her interests"] },
+        { id: 4, state: "name", text: ["my name is Nieves-bot, I know, not original at all!"] },
+        { id: 5, state: "city", text: ["Where do Nieves live? I think she's now in Spain, but maybe you'll find her traveling."] },
+        { id: 6, state: "monoceros", text: ["Nieves is currently working at <a href='https://www.monoceros.xyz' target='_blank'>Monoceros</a>", "created by her and Carlos Muñoz-Romero", "their mission is to improve the conversational interfaces landscape."] },
+        { id: 7, state: "naiz", text: ["<a href='https://www.naiz.chat' target='_blank'>NAIZ.chat</a> is a platform to add personality and emotional management to chatbots", "yeah, all of us frustrate when chatbots don't understand us, even me! :(", "with NAIZ you can improve your chatbot conversations!"] },
+        { id: 8, state: "read", text: ["read more at twitter, instagram or medium", "which one do you prefer?"] },
         { id: 9, state: "contact", text: ["right now, there are 2 ways, twitter or linkedin?"] },
-        { id: 10, state: "twitter", text: ["<a href='https://twitter.com/nieves_as'>@nieves_as</a>", "follow me to read about lean startup, technology, product design, chatbots, NLP, artificial intelligence...", " and send me a twitter message if you want to know more :)"] },
-        { id: 11, state: "linkedin", text: ["<a href='https://www.linkedin.com/in/nievesabalosserrano'>/in/nievesabalosserrano</a>", "send me a linkedin message to contact! ", "and review my profile to know more about my experience"] },
-        { id: 12, state: "medium", text: ["read my latests posts here:", "<a href='https://medium.com/@nieves_as'>@nieves_as</a>"] }
+        { id: 10, state: "twitter", text: ["<a href='https://twitter.com/nieves_as' target='_blank'>@nieves_as</a>", "follow her to read about lean startup, technology, product design, chatbots, NLP, artificial intelligence...", " and send her a twitter message if you want to know more :)"] },
+        { id: 11, state: "linkedin", text: ["<a href='https://www.linkedin.com/in/nievesabalosserrano' target='_blank'>/in/nievesabalosserrano</a>", "send Nieves a linkedin message to contact her! ", "and review her profile to know more about her experience"] },
+        { id: 12, state: "medium", text: ["read my latests posts here:", "<a href='https://medium.com/@nieves_as' target='_blank'>@nieves_as</a>"] },
+        { id: 13, state: "instagram", text: ["<a href='https://instagram.com/nievesabalos' target='_blank'>@nievesabalos</a>", "she publishes photos about her travels at instagram", ":)"] },
+        { id: 14, state: "carlos", text: ["you can know more about Carlos here", "<a href='https://www.linkedin.com/in/carlosmunozromero/' target='_blank'>in/carlosmunozromero</a>"] }
     ];
 
 
@@ -76,8 +83,6 @@ $(document).ready(function() {
 
         lastMessage = message;
 
-        //console.log("Acabo de recibir un mensaje del visitante:");
-        //console.log(message);
         ga('send', 'event', 'send-message', 'Chat', message);
 
         var messageElements = addMessage(message, true),
@@ -203,20 +208,48 @@ $(document).ready(function() {
 
         messages++;
 
+        var backupmessage = message;
         var code = understandMessage(message);
 
-        getReply(code);
+        if (code != -1) {
+            getReply(code);
+        } else {
+            var naiz_reply = "...";
+            naiz_reply = sendMessageNAIZ(backupmessage);
+        }
 
         //if(Math.random()<0.65 || lastMessage.indexOf("?")>-1 || messages==1) getReply();
     }
 
+    function sendMessageNAIZ(textmessage) {
+        var serviceURL = "https://o58gegnn7j.execute-api.us-east-1.amazonaws.com/pro";
+        let url = `${serviceURL}/test?chatbotID=cjgl0jb5lw8jc0182ww3002sg&message=${textmessage}`;
+
+        fetch(url, {
+                // mode: 'cors',
+                method: 'get',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                        // 'X-Client-Auth-Token': authToken
+                }
+            })
+            .then((res) => {
+                let result = res.json()
+                return result
+            }).then((json) => {
+                json.messages.forEach(msg => {
+                    var msg_tunned = msg.content.replace("test_user", "visitor");
+                    writeReply(msg_tunned);
+                });
+            });
+
+    }
 
     function understandMessage(message) {
         message = message.toLowerCase();
-        //console.log("Entiendo el mensaje recibido por el visitante....");
-        //console.log(message);
 
-        var replyCode = 0;
+        var replyCode = -1;
 
         if (message.includes("hola")) {
             replyCode = 1;
@@ -227,10 +260,22 @@ $(document).ready(function() {
         if (message.includes("bye")) {
             replyCode = 2;
         }
-        if (message.includes("help")) {
+        /*if (message.includes("help")) {
             replyCode = 3;
+        }*/
+        if (message.includes("name")) {
+            replyCode = 4;
         }
-        if (message.includes("read")) {
+        if (message.includes("city") || message.includes("lives")) {
+            replyCode = 5;
+        }
+        if (message.includes("monoceros")) {
+            replyCode = 6;
+        }
+        if (message.includes("naiz")) {
+            replyCode = 7;
+        }
+        if (message.includes("read") || message.includes("interests")) {
             replyCode = 8;
         }
         if (message.includes("contact")) {
@@ -245,15 +290,42 @@ $(document).ready(function() {
         if (message.includes("medium")) {
             replyCode = 12;
         }
-
-        //console.log(replyCode);
+        if (message.includes("instagram")) {
+            replyCode = 13;
+        }
+        if (message.includes("carlos")) {
+            replyCode = 14;
+        }
 
         return replyCode;
     }
 
+    function writeReply(naizmessage) {
+
+        if (incomingMessages > 2) return;
+        //incomingMessages++;
+        var typeStartDelay = 1000 + (lastMessage.length * 40) + (Math.random() * 1000);
+        setTimeout(friendIsTyping, typeStartDelay);
+
+        var message = naizmessage;
+        var responses = [naizmessage];
+
+        var typeDelay = 300 + (message.length * 10);
+        setTimeout(function() {
+            for (var i = 0; i < responses.length; i++) {
+                incomingMessages--;
+                receiveMessage(responses[i]);
+                ga('send', 'event', 'reply-message', 'Chat', responses[i]);
+            };
+
+            if (incomingMessages <= 0) {
+                friendStoppedTyping();
+            }
+        }, typeDelay + typeStartDelay);
+
+    }
+
     function getReply(code) {
-        //console.log("incomingMessages");
-        //console.log(incomingMessages);
         if (incomingMessages > 2) return;
         //incomingMessages++;
         var typeStartDelay = 1000 + (lastMessage.length * 40) + (Math.random() * 1000);
@@ -262,16 +334,12 @@ $(document).ready(function() {
         var message = "";
         var responses = [];
         for (var i = 0; i < replies.length; i++) {
-            //console.log("code ="+code);
             if (code == replies[i].id) {
-                //console.log("i found the reply ="+replies[i].id)
                 var arrayResponses = replies[i].text;
-                //console.log("New responses:"+arrayResponses.length);
                 for (var j = 0; j < arrayResponses.length; j++) {
                     incomingMessages++;
                     message += arrayResponses[j];
                     responses.push(arrayResponses[j]);
-                    //console.log("MSG >> "+arrayResponses[j]);
                 };
             };
         };
@@ -281,6 +349,7 @@ $(document).ready(function() {
             for (var i = 0; i < responses.length; i++) {
                 incomingMessages--;
                 receiveMessage(responses[i]);
+                ga('send', 'event', 'reply-message', 'Chat', responses[i]);
             };
 
             if (incomingMessages <= 0) {
