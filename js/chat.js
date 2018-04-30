@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     var typing = "Nieves-bot is typing...";
     var plantilla = "Mmm...";
+    // Some replies are not triggered
     var replies = [
         { id: 0, state: "not-understood", text: ["I can't understand you, as a beta chatbot I'm still learning language :) ", "say 'help' and I'll tell you what I can do."] },
         { id: 1, state: "hello", text: ["hello! nice to meet you :D"] },
